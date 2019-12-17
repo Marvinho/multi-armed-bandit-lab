@@ -16,13 +16,15 @@ def simulate(bandit):
         for arm_index in range(6):
             acc_rewards[arm_index] = acc_rewards[arm_index] + generate_reward(arm_index, expected_rewards_approx)
 
-    print('Reward comparison of the different arms:')
-    print([r / 10000 for r in acc_rewards])
+#    print('Reward comparison of the different arms:')
+#    print([r / 10000 for r in acc_rewards])
 
     for _ in range(1000):
         arm = bandit.run()
+#        if(_ == 50):
+#            bandit.epsilon *= 0.8
         reward = generate_reward(bandit.arms.index(arm), expected_rewards_approx)
         bandit.give_feedback(arm, reward)
-    print('Frequencies')
-    print(bandit.frequencies)
+#    print('Frequencies')
+#    print(bandit.frequencies)
     return sum(bandit.sums)
